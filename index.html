@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mike Hammer</title>
 
+    <!-- JQuery Google CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <!-- Material Design Lite -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
@@ -43,26 +46,57 @@
 		      	</nav>
 	    	</div>
 	  	</header>
-	  	<div class="mdl-layout__drawer">
+	  	<div id="app" class="mdl-layout__drawer">
 	    	<span class="mdl-layout-title">Mike Hammer</span>
 	    	<nav class="mdl-navigation">
-	      		<a class="mdl-navigation__link" href="">Home</a>
-	      		<a class="mdl-navigation__link" href="">About Me</a>
-	      		<a class="mdl-navigation__link" href="">Resume</a>
-	      		<a class="mdl-navigation__link" href="">Projects</a>
-	      		<a class="mdl-navigation__link" href="">Contact</a>
+	      		<a class="mdl-navigation__link" onclick="handleDrawerNav(0)" href="#">Home</a>
+	      		<a class="mdl-navigation__link" onclick="handleDrawerNav(1)" href="#">About Me</a>
+	      		<a class="mdl-navigation__link" onclick="handleDrawerNav(2)" href="#">Resume</a>
+	      		<a class="mdl-navigation__link" onclick="handleDrawerNav(3)" href="#">Projects</a>
+	      		<a class="mdl-navigation__link" onclick="handleDrawerNav(4)" href="#">Contact</a>
 	    	</nav>
 	  	</div>
-	  	<main class="mdl-layout__content" style="color:white">
-	  		Hello World!
+
+	  	<main id="home_page" class="mdl-layout__content" style="color:white">
+	  		Home Page
 		</main>
 
+		<main id="about_me_page" class="mdl-layout__content" style="color:white;display:none">
+	  		About Me Page
+		</main>
+
+		<main id="resume_page" class="mdl-layout__content" style="color:white;display:none">
+	  		Resume Page
+		</main>
+
+		<main id="projects_page" class="mdl-layout__content" style="color:white;display:none">
+	  		Projects Page
+		</main>
+		
+		<main id="contact_page" class="mdl-layout__content" style="color:white;display:none">
+	  		Contact Page
+		</main>
 	  	
 	</div>
 
 
-    <script></script>
+    <script>
+    	var curr_page = 0;
+    	var page_IDs = ['#home_page', '#about_me_page', '#resume_page', '#projects_page', '#contact_page']
 
+    	function handleDrawerNav(page_num) {
+    		$(page_IDs[curr_page]).hide();
+    		$(page_IDs[page_num]).show();
+    		curr_page = page_num;
+    		closeDrawer();
+    	}
+
+    	function closeDrawer() {
+    		var layout = document.querySelector('.mdl-layout');
+			layout.MaterialLayout.toggleDrawer();
+    	}
+
+    </script>
 
   </body>
 </html>
